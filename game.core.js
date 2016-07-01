@@ -1341,12 +1341,12 @@ game_core.prototype.client_draw_info = function() {
 
         this.ctx.fillStyle = 'rgba(255,255,255,0.7)';
         this.ctx.fillText('You are yellow', 10 , 465);
-	this.players.self.color = 'rgba(255,255,200,0.1)';
+	this.players.self.color = 'rgba(255,255,102,0.1)';
     } //if we are the host
     else {
     	this.ctx.fillStyle = 'rgba(255,255,255,0.7)';
         this.ctx.fillText('You are blue', 10 , 465);
-        this.players.other.color = 'rgba(50,50,210,0.1)';
+        this.players.other.color = 'rgba(0,191,255,0.1)';
     }
     
 
