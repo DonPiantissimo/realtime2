@@ -246,7 +246,10 @@ game_core.prototype.v_lerp = function(v,tv,t) { return { x: this.lerp(v.x, tv.x,
         this.pos = { x:0, y:0 };
         this.size = { x:16, y:16, hx:8, hy:8 };
         this.state = 'not-connected';
-        this.color = 'rgba(255,255,255,0.1)';
+        if(player_instance)
+        	this.color = 'rgba(255,255,200,0.1)';
+	else
+		this.color = 'rgba(50,50,210,0.1)';
         this.info_color = 'rgba(255,255,255,0.1)';
         this.id = '';
 	this.x_dir = Math.PI;
@@ -289,8 +292,8 @@ game_core.prototype.v_lerp = function(v,tv,t) { return { x: this.lerp(v.x, tv.x,
         game.ctx.fillRect(this.pos.x - this.size.hx, this.pos.y - this.size.hy, this.size.x, this.size.y);
 
             //Draw a status update
-        game.ctx.fillStyle = this.info_color;
-        game.ctx.fillText(this.state, this.pos.x+10, this.pos.y + 4);
+//       game.ctx.fillStyle = this.info_color;
+//        game.ctx.fillText(this.state, this.pos.x+10, this.pos.y + 4);
     
     }; //game_player.draw
 
@@ -305,7 +308,7 @@ game_core.prototype.v_lerp = function(v,tv,t) { return { x: this.lerp(v.x, tv.x,
 	this.down = this.pos.y;
 	this.corners = {bl: this.pos, br: {x:this.pos.x+this.width,y:this.pos.y}, ul: {x:this.pos.x,y:this.pos.y-this.height}, ur: {x:this.pos.x+this.width,y:this.pos.y-this.height}};
 	this.collidable=true;
-	this.color = "#FF0000";
+	this.color = "#F30611";
    }; //wall_obstacle.constructor
 
    wall_obstacle.prototype.draw = function(){
@@ -1339,9 +1342,13 @@ game_core.prototype.client_draw_info = function() {
     if(this.players.self.host) {
 
         this.ctx.fillStyle = 'rgba(255,255,255,0.7)';
-        this.ctx.fillText('You are the host', 10 , 465);
+        this.ctx.fillText('You are the yellow', 10 , 465);
 
     } //if we are the host
+    else {
+    	        this.ctx.fillStyle = 'rgba(255,255,255,0.7)';
+        this.ctx.fillText('You are the blue', 10 , 465);
+    }
 
 
         //Reset the style back to full white.
