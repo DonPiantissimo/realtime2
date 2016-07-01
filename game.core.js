@@ -1198,7 +1198,7 @@ game_core.prototype.client_onconnected = function(data) {
 
 game_core.prototype.client_on_otherclientcolorchange = function(data) {
 
-    this.players.other.color = data;
+    //this.players.other.color = data;
 
 }; //game_core.client_on_otherclientcolorchange
 
