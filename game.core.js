@@ -246,6 +246,7 @@ game_core.prototype.v_lerp = function(v,tv,t) { return { x: this.lerp(v.x, tv.x,
         this.pos = { x:0, y:0 };
         this.size = { x:16, y:16, hx:8, hy:8 };
         this.state = 'not-connected';
+        this.color = 'rgba(255,255,210,0.1);'
         this.info_color = 'rgba(255,255,255,0.1)';
         this.id = '';
 	this.x_dir = Math.PI;
@@ -271,10 +272,7 @@ game_core.prototype.v_lerp = function(v,tv,t) { return { x: this.lerp(v.x, tv.x,
             //with only a host, the other player is set up in the 'else' below
         if(player_instance) {
             this.pos = starting_pos_self;
-            if(this.players.self.host)
-            	this.color = 'rgba(255,255,200,0.1)';
-            else
-                this.color = 'rgba(50,50,210,0.1)';
+
         } else {
             this.pos = starting_pos_other;
         }
@@ -1343,12 +1341,14 @@ game_core.prototype.client_draw_info = function() {
 
         this.ctx.fillStyle = 'rgba(255,255,255,0.7)';
         this.ctx.fillText('You are yellow', 10 , 465);
-
+	this.color = 'rgba(255,255,200,0.1)';
     } //if we are the host
     else {
     	        this.ctx.fillStyle = 'rgba(255,255,255,0.7)';
         this.ctx.fillText('You are blue', 10 , 465);
+        this.color = 'rgba(50,50,210,0.1)';
     }
+    
 
 
         //Reset the style back to full white.
