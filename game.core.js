@@ -79,7 +79,7 @@ if('undefined' != typeof(global)) frame_time = 45; //on server we run at 45ms, 2
                 self : new game_player(this,this.instance.player_host),
                 other : new game_player(this,this.instance.player_client)
             };
-
+	   this.players.other.color = 'rgba(0,255,255,0.1)';	
            this.players.self.pos = starting_pos_self;
 	   
         } else {
@@ -1335,19 +1335,21 @@ game_core.prototype.client_draw_info = function() {
         this.ctx.fillText(' This only applies to other clients when prediction is enabled, and applies to local player with no prediction.', 170 , 230);
 
     } //if this.show_help
-
+	
+        this.ctx.fillStyle = 'rgba(255,255,255,0.7)';
+        this.ctx.fillText('You are yellow', 10 , 465);
         //Draw some information for the host
-    if(this.players.self.host) {
+/*    if(this.players.self.host) {
 
         this.ctx.fillStyle = 'rgba(255,255,255,0.7)';
         this.ctx.fillText('You are yellow', 10 , 465);
-	this.players.self.color = 'rgba(255,255,0,0.1)';
+	
     } //if we are the host
     else {
     	this.ctx.fillStyle = 'rgba(255,255,255,0.7)';
         this.ctx.fillText('You are blue', 10 , 465);
-        this.players.other.color = 'rgba(0,255,255,0.1)';
-    }
+        
+    }*/
     
 
 
