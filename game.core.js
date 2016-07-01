@@ -88,7 +88,7 @@ if('undefined' != typeof(global)) frame_time = 45; //on server we run at 45ms, 2
                 other : new game_player(this)
             };
 	
-	    this.players.other.color = 'rgba(0,100,255,0.1)';	
+	    this.players.other.color = 'rgba(0,255,255,0.5)';	
            
 
                 //Debugging ghosts, to help visualise things
