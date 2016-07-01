@@ -16,8 +16,8 @@
     // requestAnimationFrame polyfill by Erik Möller
     // fixes from Paul Irish and Tino Zijdel
 
-var playerspeed=0.7;
-var turningSpeed = -2;
+var playerspeed=0.7*2;
+var turningSpeed = -2*2;
 
 var starting_y_pos = 400;
 var starting_pos_self = {x:268, y:starting_y_pos};
