@@ -301,7 +301,7 @@ game_core.prototype.v_lerp = function(v,tv,t) { return { x: this.lerp(v.x, tv.x,
 	this.width=obstacle_width;
 	this.height=obstacle_height;
 	this.left = this.pos.x-this.width;
-	this.right = this.pos.x+this.width;
+	this.right = this.pos.x;
 	this.up = this.pos.y-this.height;
 	this.down = this.pos.y;
 	this.corners = {bl: this.pos, br: {x:this.pos.x+this.width,y:this.pos.y}, ul: {x:this.pos.x,y:this.pos.y-this.height}, ur: {x:this.pos.x+this.width,y:this.pos.y-this.height}};
@@ -393,11 +393,11 @@ game_core.prototype.check_collision = function( item ) {
 	 	item.x_dir = - item.x_dir;
 	//collision on bottom side of obstacle
 	if (item.pos.y-item.size.hy<=this.obstacles[i].down && item.pos.y-item.size.hy>this.obstacles[i].up &&
-		item.pos.x+item.size.hx>this.obstacles[i].left && item.pos.x<this.obstacles[i].right && Math.cos(item.x_dir)<=0)
+		item.pos.x+item.size.hx>this.obstacles[i].left && item.pos.x-item.size.hx/2<this.obstacles[i].right && Math.cos(item.x_dir)<=0)
 		item.x_dir=Math.PI-item.x_dir;
 	//collision on upper side of obstacle
 	if (item.pos.y<this.obstacles[i].down && item.pos.y>=this.obstacles[i].up &&
-		item.pos.x+item.size.hx>this.obstacles[i].left && item.pos.x<this.obstacles[i].right && Math.cos(item.x_dir)>=0)
+		item.pos.x+item.size.hx>this.obstacles[i].left && item.pos.x-item.size.hx/2<this.obstacles[i].right && Math.cos(item.x_dir)>=0)
 		item.x_dir=Math.PI-item.x_dir;
 	
     }
