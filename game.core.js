@@ -271,11 +271,12 @@ game_core.prototype.v_lerp = function(v,tv,t) { return { x: this.lerp(v.x, tv.x,
             //with only a host, the other player is set up in the 'else' below
         if(player_instance) {
             this.pos = starting_pos_self;
-            this.color = 'rgba(255,255,200,0.1)';
-
+            if(this.players.self.host)
+            	this.color = 'rgba(255,255,200,0.1)';
+            else
+                this.color = 'rgba(50,50,210,0.1)';
         } else {
             this.pos = starting_pos_other;
-            this.color = 'rgba(50,50,210,0.1)';
         }
 
 	this.score = 0;
