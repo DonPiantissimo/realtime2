@@ -20,8 +20,8 @@ var playerspeed=0.7;
 var turningSpeed = -2;
 
 var starting_y_pos = 400;
-var starting_pos_self = {x:20, y:starting_y_pos};
-var starting_pos_other = {x:500, y:starting_y_pos};
+var starting_pos_self = {x:288, y:starting_y_pos};
+var starting_pos_other = {x:468, y:starting_y_pos};
 
 var frame_time = 60/1000; // run the local game at 16ms/ 60hz
 if('undefined' != typeof(global)) frame_time = 45; //on server we run at 45ms, 22hz
