@@ -347,7 +347,8 @@ game_core.prototype.update = function(t) {
 
         //schedule the next update
     this.updateid = window.requestAnimationFrame( this.update.bind(this), this.viewport );
-
+	
+	renderer.render(scene, camera);
 }; //game_core.update
 
 
@@ -1357,3 +1358,63 @@ game_core.prototype.client_draw_info = function() {
     this.ctx.fillStyle = 'rgba(255,255,255,1)';
 
 }; //game_core.client_draw_help
+
+var scene,renderer,camera,plane;
+
+game_core.prototype.setupScene = function(){
+	    //set the scene size
+    var WIDTH = 640,
+            HEIGHT = 360;
+    //set some camera attributes
+    var VIEW_ANGLE = 50,
+            ASPECT = WIDTH / HEIGHT,
+            NEAR = 0.1,
+            FAR = 1000;
+            
+            
+	renderer = new THREE.WebGLRenderer();
+    	camera = new THREE.PerspectiveCamera(
+            VIEW_ANGLE,
+            ASPECT,
+            NEAR,
+            FAR);
+	scene = new THREE.Scene();
+	
+	    //add the camera to the scene
+    scene.add(camera);
+    //set a default position for the camera
+    //not doing this somehow messes up shadow rendering
+    camera.position.z = 320;
+    //start the renderer
+    renderer.setSize(WIDTH, HEIGHT);
+    game.gameCanvas.appendChild(renderer.domElement);
+    
+        var planeWidth = 400,
+            planeHeight = 200,
+            planeQuality = 10;
+    // create the plane's material	
+    var planeMaterial =
+            new THREE.MeshLambertMaterial(
+                    {
+                        color: 0x4BD121
+                    });
+    var plane = new THREE.Mesh(
+            new THREE.PlaneGeometry(
+                    planeWidth * 0.95, // 95% of table width, since we want to show where the ball goes out-of-bounds
+                    planeHeight,
+                    planeQuality,
+                    planeQuality),
+            planeMaterial);
+    scene.add(plane);
+    
+        pointLight =
+            new THREE.PointLight(0xF8D898);
+    // set its position
+    pointLight.position.x = -1000;
+    pointLight.position.y = 0;
+    pointLight.position.z = 1000;
+    pointLight.intensity = 2.9;
+    pointLight.distance = 10000;
+    // add to the scene
+    scene.add(pointLight);
+}
