@@ -277,65 +277,7 @@ game_core.prototype.v_lerp = function(v,tv,t) { return { x: this.lerp(v.x, tv.x,
             this.pos = starting_pos_other;
         }
         
-        this.renderer=null;
-        this.scene=null;
-        this.camera=null;
         
-        if (!this.server){
-        	    var WIDTH = 640,
-            HEIGHT = 360;
-    //set some camera attributes
-    var VIEW_ANGLE = 50,
-            ASPECT = WIDTH / HEIGHT,
-            NEAR = 0.1,
-            FAR = 1000;
-            
-            	this.renderer = new THREE.WebGLRenderer();
-    	this.camera = new THREE.PerspectiveCamera(
-            VIEW_ANGLE,
-            ASPECT,
-            NEAR,
-            FAR);
-	this.scene = new THREE.Scene();
-	
-	    this.scene.add(this.camera);
-    //set a default position for the camera
-    //not doing this somehow messes up shadow rendering
-    this.camera.position.z = 320;
-    //start the renderer
-    this.renderer.setSize(WIDTH, HEIGHT);
-    game.gameCanvas.appendChild(renderer.domElement);
-    
-            var planeWidth = 400,
-            planeHeight = 200,
-            planeQuality = 10;
-    // create the plane's material	
-    var planeMaterial =
-            new THREE.MeshLambertMaterial(
-                    {
-                        color: 0x4BD121
-                    });
-    this.plane = new THREE.Mesh(
-            new THREE.PlaneGeometry(
-                    planeWidth * 0.95, // 95% of table width, since we want to show where the ball goes out-of-bounds
-                    planeHeight,
-                    planeQuality,
-                    planeQuality),
-            planeMaterial);
-    this.scene.add(this.plane);
-    
-        this.pointLight =
-            new THREE.PointLight(0xF8D898);
-    // set its position
-    this.pointLight.position.x = -1000;
-    this.pointLight.position.y = 0;
-    this.pointLight.position.z = 1000;
-    this.pointLight.intensity = 2.9;
-    this.pointLight.distance = 10000;
-    // add to the scene
-    this.scene.add(this.pointLight);
-        }
-
 	this.score = 0;
 
     }; //game_player.constructor
@@ -354,7 +296,6 @@ game_core.prototype.v_lerp = function(v,tv,t) { return { x: this.lerp(v.x, tv.x,
 //       game.ctx.fillStyle = this.info_color;
 //        game.ctx.fillText(this.state, this.pos.x+10, this.pos.y + 4);
     
-    	this.renderer.render(this.scene, this.camera);
     }; //game_player.draw
 
     var wall_obstacle = function(obstacle_pos, obstacle_width, obstacle_height){
