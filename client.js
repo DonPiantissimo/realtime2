@@ -19,9 +19,59 @@ window.onload = function(){
 			//Fetch the viewport
 		game.viewport = document.getElementById('viewport');
 		
-		game.gameCanvas= document.getElementById('gameCanvas');
+		        	    var WIDTH = 640,
+            HEIGHT = 360;
+    //set some camera attributes
+    var VIEW_ANGLE = 50,
+            ASPECT = WIDTH / HEIGHT,
+            NEAR = 0.1,
+            FAR = 1000;
+            
+            game.renderer = new THREE.WebGLRenderer();
 		
-		game.setupScene();
+		game.camera = new THREE.PerspectiveCamera(
+            VIEW_ANGLE,
+            ASPECT,
+            NEAR,
+            FAR);
+	game.scene = new THREE.Scene();
+		
+		game.scene.add(game.camera);
+    //set a default position for the camera
+    //not doing this somehow messes up shadow rendering
+    game.camera.position.z = 320;
+    //start the renderer
+    game.renderer.setSize(WIDTH, HEIGHT);
+    document.getElementById('gameCanvas').appendChild(renderer.domElement);
+		
+		var planeWidth = 400,
+            planeHeight = 200,
+            planeQuality = 10;
+    // create the plane's material	
+    var planeMaterial =
+            new THREE.MeshLambertMaterial(
+                    {
+                        color: 0x4BD121
+                    });
+    game.plane = new THREE.Mesh(
+            new THREE.PlaneGeometry(
+                    planeWidth * 0.95, // 95% of table width, since we want to show where the ball goes out-of-bounds
+                    planeHeight,
+                    planeQuality,
+                    planeQuality),
+            planeMaterial);
+    game.scene.add(game.plane);
+    
+        game.pointLight =
+            new THREE.PointLight(0xF8D898);
+    // set its position
+    game.pointLight.position.x = -1000;
+    game.pointLight.position.y = 0;
+    game.pointLight.position.z = 1000;
+    game.pointLight.intensity = 2.9;
+    game.pointLight.distance = 10000;
+    // add to the scene
+    game.scene.add(game.pointLight);
 			
 			//Adjust their size
 		game.viewport.width = game.world.width;
