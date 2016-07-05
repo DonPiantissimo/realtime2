@@ -291,7 +291,8 @@ game_core.prototype.v_lerp = function(v,tv,t) { return { x: this.lerp(v.x, tv.x,
 
             //Draw a rectangle for us
         game.ctx.fillRect(this.pos.x - this.size.hx, this.pos.y - this.size.hy, this.size.x, this.size.y);
-
+	
+	game.renderer.render(game.scene, game.camera);
             //Draw a status update
 //       game.ctx.fillStyle = this.info_color;
 //        game.ctx.fillText(this.state, this.pos.x+10, this.pos.y + 4);
